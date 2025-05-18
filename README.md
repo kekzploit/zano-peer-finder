@@ -4,6 +4,24 @@ A web-based tool for discovering and monitoring Zano network nodes. This tool he
 
 ![Zano Peer Finder](assets/peer-finder.png)
 
+## Current Implementation
+
+The current version of Zano Peer Finder discovers nodes by parsing the output of a running `zanod` instance. It reads the standard output and error streams, looking for IP addresses in the logs. This method has some limitations:
+
+- Only discovers nodes that appear in the `zanod` output
+- Relies on the node's logging verbosity
+- May miss nodes that aren't actively communicating with your node
+
+## Future Improvements
+
+A planned enhancement is to implement direct interaction with the Levin P2P network protocol. This would allow the tool to:
+- Actively query the network for peer lists
+- Discover more nodes in the network
+- Get more accurate and comprehensive network topology data
+- Reduce dependency on log parsing
+
+This feature is currently on our TODO list and will be implemented in a future release.
+
 ## Features
 
 - Real-time node discovery and monitoring
