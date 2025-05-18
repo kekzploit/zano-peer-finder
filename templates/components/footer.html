@@ -1,0 +1,29 @@
+{{define "footer"}}
+<footer class="main-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>About</h4>
+            <p>Zano Network Node Finder is a tool for discovering and monitoring Zano network nodes.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Links</h4>
+            <ul>
+                {{range .Links}}
+                <li><a href="{{.URL}}" target="_blank">{{.Text}}</a></li>
+                {{end}}
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+                {{range .Resources}}
+                <li><a href="{{.URL}}" target="_blank">{{.Text}}</a></li>
+                {{end}}
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; {{.Year}} Zano Network. All rights reserved.</p>
+    </div>
+</footer>
+{{end}} 

@@ -1,0 +1,100 @@
+{{define "reports"}}
+<div class="reports-container">
+    <!-- Report Generator -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-file-alt"></i>
+            <h3>Generate Report</h3>
+        </div>
+        <div class="tool-content">
+            <form id="reportForm" class="tool-form">
+                <div class="form-group">
+                    <label for="reportType">Report Type</label>
+                    <select id="reportType" name="reportType" required>
+                        <option value="scan">Scan Report</option>
+                        <option value="exploit">Exploit Report</option>
+                        <option value="comprehensive">Comprehensive Report</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reportTarget">Target</label>
+                    <input type="text" id="reportTarget" name="target" required placeholder="Enter target IP or hostname">
+                </div>
+                <div class="form-group">
+                    <label for="reportFormat">Format</label>
+                    <select id="reportFormat" name="format" required>
+                        <option value="html">HTML</option>
+                        <option value="pdf">PDF</option>
+                        <option value="json">JSON</option>
+                    </select>
+                </div>
+                <button type="submit" class="tool-button">
+                    <i class="fas fa-file-export"></i> Generate Report
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Recent Reports -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-history"></i>
+            <h3>Recent Reports</h3>
+        </div>
+        <div class="tool-content">
+            <div class="reports-list">
+                {{range .RecentReports}}
+                <div class="report-item">
+                    <div class="report-info">
+                        <h4>{{.Title}}</h4>
+                        <p class="report-meta">
+                            <span class="report-type">{{.Type}}</span>
+                            <span class="report-date">{{.Date}}</span>
+                        </p>
+                    </div>
+                    <div class="report-actions">
+                        <button class="action-button view-report" data-id="{{.ID}}">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="action-button download-report" data-id="{{.ID}}">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="action-button delete-report" data-id="{{.ID}}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Templates -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-copy"></i>
+            <h3>Report Templates</h3>
+        </div>
+        <div class="tool-content">
+            <div class="templates-list">
+                {{range .ReportTemplates}}
+                <div class="template-item">
+                    <div class="template-info">
+                        <h4>{{.Name}}</h4>
+                        <p class="template-description">{{.Description}}</p>
+                    </div>
+                    <div class="template-actions">
+                        <button class="action-button use-template" data-id="{{.ID}}">
+                            <i class="fas fa-plus"></i> Use Template
+                        </button>
+                        <button class="action-button edit-template" data-id="{{.ID}}">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </div>
+</div>
+{{end}} 

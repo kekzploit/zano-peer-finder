@@ -1,0 +1,37 @@
+{{define "content"}}
+<section id="map-section" class="content-section active">
+    <div class="split-view">
+        {{template "node_table" .NodeTable}}
+    </div>
+</section>
+
+<!-- Map Modal -->
+<div id="map-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Node Location</h3>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="map"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Other sections -->
+<section id="recon-section" class="content-section">
+    {{template "recon_tools" .ReconTools}}
+</section>
+
+<section id="exploits-section" class="content-section">
+    {{template "exploit_tools" .ExploitTools}}
+</section>
+
+<section id="reports-section" class="content-section">
+    {{template "reports" .Reports}}
+</section>
+
+<section id="settings-section" class="content-section">
+    {{template "settings" .Settings}}
+</section>
+{{end}} 

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zano Network Node Finder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-network-wired"></i>
+                <div class="logo-text">
+                    <span class="brand">Zano</span>
+                    <span class="subtitle">Node Finder</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search nodes...">
+                </div>
+                <div class="filter-dropdown">
+                    <select id="statusFilter">
+                        <option value="all">All Nodes</option>
+                        <option value="online">Online Only</option>
+                        <option value="offline">Offline Only</option>
+                    </select>
+                </div>
+                <button id="exportNodes" class="export-button" title="Export Nodes">
+                    <i class="fas fa-download"></i>
+                    Export Nodes
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <i class="fas fa-server"></i>
+                <div class="stat-content">
+                    <span class="stat-label">Total Nodes</span>
+                    <span class="stat-value" id="totalNodes">0</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-check-circle"></i>
+                <div class="stat-content">
+                    <span class="stat-label">Online Nodes</span>
+                    <span class="stat-value" id="onlineNodes">0</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-times-circle"></i>
+                <div class="stat-content">
+                    <span class="stat-label">Offline Nodes</span>
+                    <span class="stat-value" id="offlineNodes">0</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-clock"></i>
+                <div class="stat-content">
+                    <span class="stat-label">New Nodes (24h)</span>
+                    <span class="stat-value" id="newNodes">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section active" id="nodes-section">
+            <div class="node-panel">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>IP Address</th>
+                                <th>Location</th>
+                                <th>Network Info</th>
+                                <th>Tags</th>
+                                <th>Last Seen</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="nodeTableBody">
+                            <!-- Nodes will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Donations</h3>
+                <p>If you find this tool valuable for monitoring and analyzing the Zano network, please consider supporting its development.</p>
+                <p>Your donations help maintain and improve this tool, ensuring it remains free and accessible to the Zano community.</p>
+                <p style="margin-top: 1rem; font-weight: bold;">Zano Address: @kekzploit</p>
+                <p style="font-style: italic; margin-top: 0.5rem;">Made with ❤️ by kekzploit</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="https://zano.org" target="_blank">Zano Website</a></li>
+                    <li><a href="https://github.com/hyle-team/zano" target="_blank">GitHub</a></li>
+                    <li><a href="https://t.me/zano" target="_blank">Telegram</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://docs.zano.org" target="_blank">Documentation</a></li>
+                    <li><a href="https://explorer.zano.org" target="_blank">Block Explorer</a></li>
+                    <li><a href="map.html" target="_blank">Map View</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <div id="notificationContainer"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 

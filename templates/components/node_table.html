@@ -1,0 +1,88 @@
+{{define "node_table"}}
+<div class="node-panel">
+    <div class="panel-header">
+        <h2>Network Nodes</h2>
+        <div class="panel-controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search nodes..." id="nodeSearch">
+            </div>
+            <div class="filter-dropdown">
+                <select id="nodeFilter">
+                    <option value="all">All Nodes</option>
+                    <option value="online">Online</option>
+                    <option value="offline">Offline</option>
+                    <option value="seed">Seed Nodes</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="node-table">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>IP Address</th>
+                    <th>Location</th>
+                    <th>Network Info</th>
+                    <th>Last Seen</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range .Nodes}}
+                <tr>
+                    <td>
+                        <span class="status-indicator {{if .IsOnline}}online{{else}}offline{{end}}"></span>
+                        {{if .IsOnline}}Online{{else}}Offline{{end}}
+                    </td>
+                    <td>{{.IP}}</td>
+                    <td>
+                        <div class="location-info">
+                            <span class="country-name">{{.Country}}</span>
+                            <span class="city-name">{{.City}}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="network-info">
+                            <span class="isp-name">{{.ISP}}</span>
+                            <span class="as-info">{{.AS}}</span>
+                        </div>
+                    </td>
+                    <td>{{.LastSeen.Format "2006-01-02 15:04:05"}}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-button map-button" onclick="showNodeOnMap('{{.IP}}', '{{.Lat}}', '{{.Lon}}')">
+                                <i class="fas fa-map-marker-alt"></i> Map
+                            </button>
+                            <button class="action-button scan-button" onclick="scanNode('{{.IP}}')">
+                                <i class="fas fa-search"></i> Scan
+                            </button>
+                            <button class="action-button details-button" onclick="showNodeDetails('{{.IP}}')">
+                                <i class="fas fa-info-circle"></i> Details
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <div class="node-stats">
+            <div class="stat-item">
+                <i class="fas fa-circle text-success"></i>
+                <span id="onlineCount">0</span> Online
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-circle text-danger"></i>
+                <span id="offlineCount">0</span> Offline
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-circle text-warning"></i>
+                <span id="seedCount">0</span> Seed Nodes
+            </div>
+        </div>
+    </div>
+</div>
+{{end}} 

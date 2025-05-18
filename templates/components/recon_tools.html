@@ -1,0 +1,91 @@
+{{define "recon_tools"}}
+<div class="tools-grid">
+    <!-- Port Scanner -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-network-wired"></i>
+            <h3>Port Scanner</h3>
+        </div>
+        <div class="tool-content">
+            <form id="portScanForm" class="tool-form">
+                <div class="form-group">
+                    <label for="portScanTarget">Target IP/Host</label>
+                    <input type="text" id="portScanTarget" name="target" required placeholder="Enter IP address or hostname">
+                </div>
+                <div class="form-group">
+                    <label for="portRange">Port Range</label>
+                    <input type="text" id="portRange" name="ports" required placeholder="e.g., 1-1000">
+                </div>
+                <button type="submit" class="tool-button">
+                    <i class="fas fa-search"></i> Scan Ports
+                </button>
+            </form>
+            <div id="portScanResults" class="tool-results"></div>
+        </div>
+    </div>
+
+    <!-- Service Detector -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-server"></i>
+            <h3>Service Detector</h3>
+        </div>
+        <div class="tool-content">
+            <form id="serviceDetectForm" class="tool-form">
+                <div class="form-group">
+                    <label for="serviceTarget">Target IP/Host</label>
+                    <input type="text" id="serviceTarget" name="target" required placeholder="Enter IP address or hostname">
+                </div>
+                <div class="form-group">
+                    <label for="servicePorts">Ports to Check</label>
+                    <input type="text" id="servicePorts" name="ports" required placeholder="e.g., 80,443,8080">
+                </div>
+                <button type="submit" class="tool-button">
+                    <i class="fas fa-search"></i> Detect Services
+                </button>
+            </form>
+            <div id="serviceDetectResults" class="tool-results"></div>
+        </div>
+    </div>
+
+    <!-- DNS Enumerator -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-sitemap"></i>
+            <h3>DNS Enumerator</h3>
+        </div>
+        <div class="tool-content">
+            <form id="dnsEnumForm" class="tool-form">
+                <div class="form-group">
+                    <label for="dnsTarget">Target Domain</label>
+                    <input type="text" id="dnsTarget" name="domain" required placeholder="Enter domain name">
+                </div>
+                <button type="submit" class="tool-button">
+                    <i class="fas fa-search"></i> Enumerate DNS
+                </button>
+            </form>
+            <div id="dnsEnumResults" class="tool-results"></div>
+        </div>
+    </div>
+
+    <!-- Subdomain Scanner -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-sitemap"></i>
+            <h3>Subdomain Scanner</h3>
+        </div>
+        <div class="tool-content">
+            <form id="subdomainScanForm" class="tool-form">
+                <div class="form-group">
+                    <label for="subdomainTarget">Target Domain</label>
+                    <input type="text" id="subdomainTarget" name="domain" required placeholder="Enter domain name">
+                </div>
+                <button type="submit" class="tool-button">
+                    <i class="fas fa-search"></i> Scan Subdomains
+                </button>
+            </form>
+            <div id="subdomainScanResults" class="tool-results"></div>
+        </div>
+    </div>
+</div>
+{{end}} 

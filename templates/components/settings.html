@@ -1,0 +1,140 @@
+{{define "settings"}}
+<div class="settings-container">
+    <!-- General Settings -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-cog"></i>
+            <h3>General Settings</h3>
+        </div>
+        <div class="tool-content">
+            <form id="generalSettingsForm" class="tool-form">
+                <div class="form-group">
+                    <label for="scanThreads">Scan Threads</label>
+                    <input type="number" id="scanThreads" name="scanThreads" min="1" max="100" value="{{.Settings.ScanThreads}}">
+                </div>
+                <div class="form-group">
+                    <label for="timeout">Default Timeout (seconds)</label>
+                    <input type="number" id="timeout" name="timeout" min="1" max="300" value="{{.Settings.Timeout}}">
+                </div>
+                <div class="form-group">
+                    <label for="autoSave">Auto-save Results</label>
+                    <input type="checkbox" id="autoSave" name="autoSave" {{if .Settings.AutoSave}}checked{{end}}>
+                </div>
+                <button type="submit" class="tool-button">
+                    <i class="fas fa-save"></i> Save Settings
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- API Settings -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-plug"></i>
+            <h3>API Settings</h3>
+        </div>
+        <div class="tool-content">
+            <form id="apiSettingsForm" class="tool-form">
+                <div class="form-group">
+                    <label for="apiKey">API Key</label>
+                    <input type="password" id="apiKey" name="apiKey" value="{{.Settings.APIKey}}">
+                </div>
+                <div class="form-group">
+                    <label for="apiEndpoint">API Endpoint</label>
+                    <input type="url" id="apiEndpoint" name="apiEndpoint" value="{{.Settings.APIEndpoint}}">
+                </div>
+                <div class="form-group">
+                    <label for="apiTimeout">API Timeout (seconds)</label>
+                    <input type="number" id="apiTimeout" name="apiTimeout" min="1" max="60" value="{{.Settings.APITimeout}}">
+                </div>
+                <button type="submit" class="tool-button">
+                    <i class="fas fa-save"></i> Save API Settings
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Settings -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-bell"></i>
+            <h3>Notification Settings</h3>
+        </div>
+        <div class="tool-content">
+            <form id="notificationSettingsForm" class="tool-form">
+                <div class="form-group">
+                    <label for="emailNotifications">Email Notifications</label>
+                    <input type="checkbox" id="emailNotifications" name="emailNotifications" {{if .Settings.EmailNotifications}}checked{{end}}>
+                </div>
+                <div class="form-group">
+                    <label for="notificationEmail">Notification Email</label>
+                    <input type="email" id="notificationEmail" name="notificationEmail" value="{{.Settings.NotificationEmail}}">
+                </div>
+                <div class="form-group">
+                    <label>Notification Events</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="notifyScanComplete" {{if .Settings.NotifyScanComplete}}checked{{end}}>
+                            Scan Complete
+                        </label>
+                        <label>
+                            <input type="checkbox" name="notifyVulnFound" {{if .Settings.NotifyVulnFound}}checked{{end}}>
+                            Vulnerability Found
+                        </label>
+                        <label>
+                            <input type="checkbox" name="notifyExploitSuccess" {{if .Settings.NotifyExploitSuccess}}checked{{end}}>
+                            Exploit Success
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="tool-button">
+                    <i class="fas fa-save"></i> Save Notification Settings
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Proxy Settings -->
+    <div class="tool-card">
+        <div class="tool-header">
+            <i class="fas fa-random"></i>
+            <h3>Proxy Settings</h3>
+        </div>
+        <div class="tool-content">
+            <form id="proxySettingsForm" class="tool-form">
+                <div class="form-group">
+                    <label for="useProxy">Use Proxy</label>
+                    <input type="checkbox" id="useProxy" name="useProxy" {{if .Settings.UseProxy}}checked{{end}}>
+                </div>
+                <div class="form-group">
+                    <label for="proxyType">Proxy Type</label>
+                    <select id="proxyType" name="proxyType">
+                        <option value="http" {{if eq .Settings.ProxyType "http"}}selected{{end}}>HTTP</option>
+                        <option value="socks4" {{if eq .Settings.ProxyType "socks4"}}selected{{end}}>SOCKS4</option>
+                        <option value="socks5" {{if eq .Settings.ProxyType "socks5"}}selected{{end}}>SOCKS5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="proxyHost">Proxy Host</label>
+                    <input type="text" id="proxyHost" name="proxyHost" value="{{.Settings.ProxyHost}}">
+                </div>
+                <div class="form-group">
+                    <label for="proxyPort">Proxy Port</label>
+                    <input type="number" id="proxyPort" name="proxyPort" min="1" max="65535" value="{{.Settings.ProxyPort}}">
+                </div>
+                <div class="form-group">
+                    <label for="proxyUsername">Proxy Username</label>
+                    <input type="text" id="proxyUsername" name="proxyUsername" value="{{.Settings.ProxyUsername}}">
+                </div>
+                <div class="form-group">
+                    <label for="proxyPassword">Proxy Password</label>
+                    <input type="password" id="proxyPassword" name="proxyPassword" value="{{.Settings.ProxyPassword}}">
+                </div>
+                <button type="submit" class="tool-button">
+                    <i class="fas fa-save"></i> Save Proxy Settings
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}} 
