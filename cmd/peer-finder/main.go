@@ -715,8 +715,8 @@ func main() {
 			return
 		}
 
-		// Regular expression to match IP addresses
-		ipRegex := regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`)
+		// Regular expression to match IP addresses with optional ports
+		ipRegex := regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}(?::\d+)?\b`)
 
 		// WaitGroup to ensure all goroutines complete
 		var wg sync.WaitGroup
@@ -788,8 +788,14 @@ func main() {
 					log.Debug().Str("prefix", prefix).Str("line", line).Msg("Node output")
 
 					// Find all IP addresses in the line
-					ips := ipRegex.FindAllString(line, -1)
-					for _, ip := range ips {
+					ipMatches := ipRegex.FindAllString(line, -1)
+					for _, ipMatch := range ipMatches {
+						// Split IP and port if present
+						ip := ipMatch
+						if strings.Contains(ipMatch, ":") {
+							ip = strings.Split(ipMatch, ":")[0]
+						}
+
 						// Skip localhost IPs
 						if !strings.HasPrefix(ip, "127.") && !strings.HasPrefix(ip, "0.") {
 							// Add to discovered peers
