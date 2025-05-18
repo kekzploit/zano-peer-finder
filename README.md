@@ -2,6 +2,8 @@
 
 A web-based tool for discovering and monitoring Zano network nodes. This tool helps you visualize the Zano network topology, track node status, and analyze network distribution.
 
+![Zano Peer Finder](assets/peer-finder.png)
+
 ## Features
 
 - Real-time node discovery and monitoring
